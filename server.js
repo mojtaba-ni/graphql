@@ -1,6 +1,6 @@
 import express from "express";
 import { graphqlHTTP } from "express-graphql";
-import {userType } from "./type/userType.js";
+import {mutations, userType } from "./type/userType.js";
 import { userList } from "./data.js";
 import {
     GraphQLID,
@@ -31,7 +31,7 @@ const RootQuery = new GraphQLObjectType({
   },
 });
 
-export const schema = new GraphQLSchema({ query: RootQuery });
+export const schema = new GraphQLSchema({ query: RootQuery , mutation:mutations });
 
 app.use("/graphql", graphqlHTTP({ schema, graphiql: true }));
 
